@@ -10,6 +10,7 @@
 <h1>HELLO</h1>
 <h1>Xin chào</h1>
 <h1>Xin chào1</h1>
+<h1>Xin chào2</h1>
 
 <a href ="/shopthethao/trang-chu">click</a>
 </body>
