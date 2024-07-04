@@ -27,11 +27,14 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h1>HELLO</h1>
-<h1>Xin chào</h1>
-<div id="bodyContent">
-    <h1>${message}</h1>
-</div>
-<a href="#" id="changeBody">Click to change body</a>
+	<h1>HELLO</h1>
+	<h1>${message}</h1>
+	<h1>Xin chào</h1>
+	<img src="${path}">
+
+	<div id="bodyContent">
+	   
+	</div>
+	<a href="#" id="changeBody">Click to change body</a>
 </body>
 </html>
