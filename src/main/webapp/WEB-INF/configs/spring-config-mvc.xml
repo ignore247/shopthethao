@@ -1,35 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
        		http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd
             http://www.springframework.org/schema/mvc
-            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-	
-	<mvc:annotation-driven/>
-    <!-- Activates scanning of @Repository and @Service and @Component -->
-    <context:component-scan base-package="com.shopthethao" />
-    
-     <!-- Cấu hình vị trí các tài nguyên tĩnh -->
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/" />
-        <property name="suffix" value=".jsp" />
+	<mvc:annotation-driven />
+	<!-- Activates scanning of @Repository and @Service and @Component -->
+	<context:component-scan
+		base-package="com.shopthethao" />
+
+	<!-- Cấu hình vị trí các tài nguyên tĩnh -->
+	<mvc:resources mapping="/resources/**"
+		location="/resources/" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+	</bean>
+
+	<bean id="baseUploadFile" class="com.shopthethao.bean.UploadFile">
+		<property name="basePath"
+			value="D:\\Java_web\\Thethaoshop\\shopthethao\\src\\main\\webapp\\resources\\image" />
+	</bean>
+	
+	<!-- Kết nối CSDL -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=test_ketnoi;encrypt=true;trustServerCertificate=true" />
+		<property name="username" value="sa" />
+		<property name="password" value="123" />
+	</bean>
+
+	  <!-- Cấu hình Hibernate -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <!-- Other Hibernate properties -->
+            </props>
+        </property>
+        <property name="packagesToScan" value="com.shopthethao.Entity" />
     </bean>
-    
-     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- Đặt các thuộc tính nếu cần thiết, ví dụ: maxUploadSize -->
-        <property name="maxUploadSize" value="20971520"/> <!-- 20MB -->
+
+    <!-- Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-    
-     <bean id="baseUploadFile" class="shopthethao.bean.UploadFile">
-        <property name="basePath" value="D:\\Java_web\\Thethaoshop\\shopthethao\\src\\main\\webapp\\resources\\image"/>
-    </bean>
+
+    <!-- Enable transaction annotations -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>

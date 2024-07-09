@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,5 +38,14 @@ $(document).ready(function(){
 	   
 	</div>
 	<a href="#" id="changeBody">Click to change body</a>
+	<c:forEach var="list" varStatus="i" items="${list_tt}">
+		<ul>
+			<li>${list.id}</li>
+			<li>${list.ten}</li>
+		
+		</ul>
+		
+	</c:forEach>
+	
 </body>
 </html>

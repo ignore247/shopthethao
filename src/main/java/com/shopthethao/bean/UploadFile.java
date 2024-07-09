@@ -1,4 +1,4 @@
-package shopthethao.bean;
+package com.shopthethao.bean;
 
 public class UploadFile {
 	private String basePath;
