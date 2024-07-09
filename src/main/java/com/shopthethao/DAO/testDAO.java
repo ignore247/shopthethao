@@ -21,7 +21,6 @@ public class testDAO {
 	
 	@Transactional
 	public List<test_thongtinEntity> laytt(){
-		
 		Session session = factory.getCurrentSession();
 		String hql = "from test_thongtinEntity";
 		Query query = session.createQuery(hql);
