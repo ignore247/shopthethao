@@ -13,6 +13,10 @@
 <h1>Xin chào2</h1>
 
 <a href ="/shopthethao/trang-chu">click</a>
+<br>
+<a href ="/shopthethao/phan-trang">Phân trang</a>
+<br>
+
 <!-- <img src="./resources/image/912052.jpg" style="height: 200px"> -->
 <!-- <img src="https://github.com/ignore247/shopthethao-img/blob/main/test/912052.jpg?raw=true" style="height: 200px">  -->
 
