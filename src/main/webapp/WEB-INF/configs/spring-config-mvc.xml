@@ -45,7 +45,7 @@
 		<property name="driverClassName"
 			value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 		<property name="url"
-			value="jdbc:sqlserver://localhost:1433;databaseName=test_ketnoi;encrypt=true;trustServerCertificate=true" />
+			value="jdbc:sqlserver://localhost:1433;databaseName=shopthethao;encrypt=true;trustServerCertificate=true" />
 		<property name="username" value="sa" />
 		<property name="password" value="212441" />
 	</bean>
@@ -57,6 +57,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
                 <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <!-- Other Hibernate properties -->
             </props>
         </property>

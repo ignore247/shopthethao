@@ -50,12 +50,12 @@
                     </a>
                     <h1 class="auth__heading">Sign Up</h1>
                     <p class="auth__desc">Let’s create your account and Shop like a pro and save money.</p>
-                    <form action="./index-logined.html" class="form auth__form">
+                    <form action="/shopthethao/user-sign-up" class="form auth__form" method="POST" >
                         <div class="form__group">
                             <div class="form__text-input">
                                 <input
                                     type="email"
-                                    name=""
+                                    name="email"
                                     id=""
                                     placeholder="Email"
                                     class="form__input"
@@ -71,7 +71,7 @@
                             <div class="form__text-input">
                                 <input
                                     type="password"
-                                    name=""
+                                    name="password"
                                     id=""
                                     placeholder="Password"
                                     class="form__input"
