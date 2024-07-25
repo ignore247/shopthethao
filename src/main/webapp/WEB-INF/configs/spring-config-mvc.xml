@@ -47,7 +47,7 @@
 		<property name="url"
 			value="jdbc:sqlserver://localhost:1433;databaseName=test_ketnoi;encrypt=true;trustServerCertificate=true" />
 		<property name="username" value="sa" />
-		<property name="password" value="123" />
+		<property name="password" value="212441" />
 	</bean>
 
 	  <!-- Cấu hình Hibernate -->
