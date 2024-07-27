@@ -3,11 +3,11 @@ package com.shopthethao.DAO;
 import java.util.List;
 
 import javax.transaction.SystemException;
-import javax.transaction.Transaction;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,7 +35,7 @@ public class loginDAO {
 	@Transactional
 	public void insert_account(Accounts accounts) throws IllegalStateException, SystemException {
 		Session session = factory.openSession();
-		Transaction transaction = (Transaction) session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		try {
 			session.save(accounts);
 			transaction.commit();

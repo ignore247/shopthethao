@@ -1,12 +1,17 @@
 package com.shopthethao.controller;
 
-import java.sql.Date;
+import java.util.Date;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import javax.mail.Session;
 import javax.transaction.SystemException;
 import javax.transaction.Transactional;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +27,12 @@ import com.shopthethao.Entity.Roles;
 
 public class LoginController {
 
+	@Autowired
+	SessionFactory factory;
+	
+	@Autowired
+	loginDAO loginDAO = new loginDAO();
+	
 	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
 	public String sign_upPage(Model model) {
 
@@ -37,15 +48,17 @@ public class LoginController {
 		
 		System.out.println("đăng ký tài khoản");
 		
+		System.out.println(email);
+		
+		System.out.println(password);
+		
 		Roles role = new Roles("R002", "Customer");
 		
-		LocalDate localDate = LocalDate.now();
+		LocalDateTime localDateTime = LocalDateTime.now();
 		
-        Date created_at = Date.valueOf(localDate);
+        Date created_at = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 		
 		Accounts accounts = new Accounts(email,password,created_at,role);
-		
-		loginDAO loginDAO = new loginDAO();
 		
 		loginDAO.insert_account(accounts);
 		

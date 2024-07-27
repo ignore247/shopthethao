@@ -23,8 +23,8 @@ public class Accounts {
 	@Column(name = "password")
 	private String password;
 	@Column(name = "created_at")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date created_at;
 	@ManyToOne
 	@JoinColumn(name = "id_role")
